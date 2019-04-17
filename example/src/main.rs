@@ -13,36 +13,42 @@ fn main() -> Result<(), Error<LinuxI2CError>> {
     //mpu.soft_calib(200)?;
 
     loop {
+       match mpu.get_rate() {
+           Ok(r) => {
+               println!("Rate: {}", r);
+           },
+           _ => {},
+       }
         // get roll and pitch estimate
-        match mpu.get_acc_angles() {
-            Ok(r) => {
-                println!("r/p: {:?}", r);
-            },
-            Err(_) => {} ,
-        }
+       // match mpu.get_acc_angles() {
+       //     Ok(r) => {
+       //         println!("r/p: {:?}", r);
+       //     },
+       //     Err(_) => {} ,
+       // }
 
-        // get temp
-        match mpu.get_temp() {
-            Ok(r) => {
-                println!("temp: {}c", r);
-            },
-            Err(_) => {} ,
-        }
+       // // get temp
+       // match mpu.get_temp() {
+       //     Ok(r) => {
+       //         println!("temp: {}c", r);
+       //     },
+       //     Err(_) => {} ,
+       // }
 
-        // get gyro data, scaled with sensitivity 
-        match mpu.get_gyro() {
-            Ok(r) => {
-                println!("gyro: {:?}", r);
-            },
-            Err(_) => {} ,
-        }
-        
-        // get accelerometer data, scaled with sensitivity
-        match mpu.get_acc() {
-            Ok(r) => {
-                println!("acc: {:?}", r);
-            },
-            Err(_) => {} ,
-        }
+       // // get gyro data, scaled with sensitivity 
+       // match mpu.get_gyro() {
+       //     Ok(r) => {
+       //         println!("gyro: {:?}", r);
+       //     },
+       //     Err(_) => {} ,
+       // }
+       // 
+       // // get accelerometer data, scaled with sensitivity
+       // match mpu.get_acc() {
+       //     Ok(r) => {
+       //         println!("acc: {:?}", r);
+       //     },
+       //     Err(_) => {} ,
+       // }
     }
 }
